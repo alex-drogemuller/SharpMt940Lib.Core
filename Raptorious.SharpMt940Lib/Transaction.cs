@@ -4,9 +4,9 @@
 */
 
 using System;
-using System.Text.RegularExpressions;
 using System.Data;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Raptorious.SharpMt940Lib
 {
@@ -105,7 +105,7 @@ namespace Raptorious.SharpMt940Lib
         /// <param name="cultureInfo">The culture to use</param>
         public Transaction(string data, Currency currency, CultureInfo cultureInfo)
         {
-            if(string.IsNullOrWhiteSpace(data))
+            if (string.IsNullOrWhiteSpace(data))
             {
                 throw new ArgumentException("data can not be empty", nameof(data));
             }
@@ -119,15 +119,15 @@ namespace Raptorious.SharpMt940Lib
             {
                 throw new ArgumentNullException(nameof(cultureInfo));
             }
-            
+
 
             // TODO: Finish/Fix regex
             // @See: https://bitbucket.org/raptux/sharpmt940lib/issue/1/regex-problem-in-transactioncs
-            
+
             // not done.
             //Regex regex = new Regex(@"^(?<valuedate>(?<year>\d{2})(?<month>\d{2})(?<day>\d{2}))(?<entrydate>(?<entrymonth>\d{2})(?<entryday>\d{2}))?(?<creditdebit>C|D|RC|RD)(?<fundscode>[A-z]{0,1}?)(?<ammount>\d*,\d{0,2})(?<transactiontype>[\w\s]{4})(?<reference>[\s\w]{0,16})");
 
-            var regex = new Regex(@"^(?<valuedate>(?<year>\d{2})(?<month>\d{2})(?<day>\d{2}))(?<entrydate>(?<entrymonth>\d{2})(?<entryday>\d{2}))?(?<creditdebit>C|D|RC|RD)(?<fundscode>[A-z]{0,1}?)(?<ammount>\d*[,.]\d{0,2})(?<transactiontype>[\w\s]{4})(?<reference>[\s\w]{0,16})(?:(?<servicingreference>//[\s\w]{0,16}))*(?<supplementary>\r\n[\s\w]{0,34})*");
+            var regex = new Regex(@"^(?<valuedate>(?<year>\d{2})(?<month>\d{2})(?<day>\d{2}))(?<entrydate>(?<entrymonth>\d{2})(?<entryday>\d{2}))?(?<creditdebit>C|D|RC|RD)(?<fundscode>[A-z]{0,1}?)(?<ammount>\d*[,.]\d{0,2})(?<transactiontype>[\w\s]{4})(?<reference>[ \t\w]{0,16})(?:(?<servicingreference>//[ \t\w]{0,16}))*(?<supplementary>[\r\n]{1,2}[ \t\w]{0,34})*");
 
 
             var match = regex.Match(data);
@@ -195,7 +195,7 @@ namespace Raptorious.SharpMt940Lib
                 throw new ArgumentNullException(nameof(cultureInfo));
             }
 
-            if(!match.Groups["entrydate"].Success)
+            if (!match.Groups["entrydate"].Success)
             {
                 return null;
             }
@@ -236,7 +236,7 @@ namespace Raptorious.SharpMt940Lib
 
         static string ExtractEntryYear(Match match)
         {
-            if(match == null)
+            if (match == null)
             {
                 throw new ArgumentNullException(nameof(match));
             }

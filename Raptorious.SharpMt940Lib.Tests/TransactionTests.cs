@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
+using Raptorious.SharpMt940Lib.Mt940Format;
 using System;
 using System.Data;
-using Raptorious.SharpMt940Lib.Mt940Format;
 
 namespace Raptorious.SharpMt940Lib.Tests
 {
@@ -12,7 +12,7 @@ namespace Raptorious.SharpMt940Lib.Tests
         public void EntryMonthAndEntryDayAvailableText()
         {
             var transaction = new Transaction("1312231223DR0,95N011NONREF", new Currency("EUR"));
-                        
+
             Assert.That(transaction.EntryDate.HasValue, Is.True);
             Assert.That(transaction.EntryDate.Value, Is.EqualTo(new DateTime(2013, 12, 23)));
             Assert.That(transaction.ValueDate, Is.EqualTo(new DateTime(2013, 12, 23)));
@@ -21,8 +21,8 @@ namespace Raptorious.SharpMt940Lib.Tests
         [Test, Category("Issue2")]
         public void EntryMonthAndEntryDayOptionalText()
         {
-            var transaction = new Transaction("131223DR0,95N011NONREF", new Currency("EUR"));            
-            
+            var transaction = new Transaction("131223DR0,95N011NONREF", new Currency("EUR"));
+
             Assert.That(transaction.EntryDate, Is.Null);
             Assert.That(transaction.EntryDate.HasValue, Is.False);
             Assert.That(transaction.ValueDate, Is.EqualTo(new DateTime(2013, 12, 23)));
@@ -31,14 +31,14 @@ namespace Raptorious.SharpMt940Lib.Tests
         [Test, Category("Issue2")]
         public void EntryMonthOptionalText()
         {
-            Assert.Throws<InvalidExpressionException>(() => 
-                new Transaction("13122323DR0,95N011NONREF", new Currency("EUR")));            
+            Assert.Throws<InvalidExpressionException>(() =>
+                new Transaction("13122323DR0,95N011NONREF", new Currency("EUR")));
         }
 
         [Test, Category("Issue2")]
         public void EntryDayOptionalText()
         {
-            Assert.Throws<InvalidExpressionException>(() => 
+            Assert.Throws<InvalidExpressionException>(() =>
                 new Transaction("13122312DR0,95N011NONREF", new Currency("EUR")));
         }
 
@@ -68,7 +68,20 @@ namespace Raptorious.SharpMt940Lib.Tests
 
             var transaction = new Transaction("1501260126CR18790,00NTRFPON0000002534162\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
 
+
+            var expectedTransaction2 = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+                "R", "EUR", 18790.00M, "NTRF", "PON00000025", null, "Inward Payment", "");
+
+            var transaction2 = new Transaction("1501260126CR18790,00NTRFPON00000025\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
+
+            var expectedTransaction3 = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+                "R", "EUR", 18790.00M, "NTRF", "PON00000025", null, "Inward Payment", "TEST123");
+
+            var transaction3 = new Transaction("1501260126CR18790,00NTRFPON00000025//TEST123\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
+
             ExpectedSwiftTransaction.AssertTransaction(expectedTransaction, transaction);
+            ExpectedSwiftTransaction.AssertTransaction(expectedTransaction2, transaction2);
+            ExpectedSwiftTransaction.AssertTransaction(expectedTransaction3, transaction3);
         }
 
         [Test]
