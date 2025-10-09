@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net40;net45;net461;net9.0</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
-    <AssemblyName>SharpMt940Lib.Core</AssemblyName>
-    <PackageId>SharpMt940Lib.Core</PackageId>
-    <Title>SharpMt940Lib.Core</Title>
-    <Product>SharpMt940Lib.Core</Product>
+    <AssemblyName>Aurum.Mt940.Core</AssemblyName>
+    <PackageId>Aurum.Mt940.Core</PackageId>
+    <Title>Aurum.Mt940.Core</Title>
+    <Product>Aurum.Mt940.Core</Product>
     <Version>1.0.3</Version>
     <PackageVersion>1.0.3</PackageVersion>
     <AssemblyVersion>1.0.3</AssemblyVersion>
     <Authors>Mohammad Javad Ebrahimi; Alex Drogemuller</Authors>
     <Company>Aurum Solutions</Company>
     <Copyright>Copyright © Mohammad Javad Ebrahimi 2019, Alex Drogemuller 2025</Copyright>
-    <Description>SharpMt940Lib.Core is an unofficial port of the 'Raptorious.Finance.Swift.Mt940' to .NET Core. SharpMT940Lib implements the MT940 format in C# and is based on specifications of multiple banks. You can use it as a base for financial software or for conversions to other formats like CSV or OFX.</Description>
+    <Description>A fork of the SharpMt940Lib.Core package that fixes some regex issues.</Description>
     <PackageTags>.NETCore MT940 SharpMT940Lib Bank Swift Finance Transaction Parser</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/alex-drogemuller/SharpMt940Lib.Core</RepositoryUrl>
