@@ -14,8 +14,8 @@ namespace Raptorious.SharpMt940Lib.Tests
             var transaction = new Transaction("1312231223DR0,95N011NONREF", new Currency("EUR"));
 
             Assert.That(transaction.EntryDate.HasValue, Is.True);
-            Assert.That(transaction.EntryDate.Value, Is.EqualTo(new DateTime(2013, 12, 23)));
-            Assert.That(transaction.ValueDate, Is.EqualTo(new DateTime(2013, 12, 23)));
+            Assert.That(transaction.EntryDate.Value, Is.EqualTo(new DateOnly(2013, 12, 23)));
+            Assert.That(transaction.ValueDate, Is.EqualTo(new DateOnly(2013, 12, 23)));
         }
 
         [Test, Category("Issue2")]
@@ -25,7 +25,7 @@ namespace Raptorious.SharpMt940Lib.Tests
 
             Assert.That(transaction.EntryDate, Is.Null);
             Assert.That(transaction.EntryDate.HasValue, Is.False);
-            Assert.That(transaction.ValueDate, Is.EqualTo(new DateTime(2013, 12, 23)));
+            Assert.That(transaction.ValueDate, Is.EqualTo(new DateOnly(2013, 12, 23)));
         }
 
         [Test, Category("Issue2")]
@@ -63,18 +63,18 @@ namespace Raptorious.SharpMt940Lib.Tests
         [Test]
         public void WithSupplementaryDetails_IsParsedCorrectly()
         {
-            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateOnly(2015, 1, 26), DebitCredit.Credit,
                 "R", "EUR", 18790.00M, "NTRF", "PON0000002534162", null, "Inward Payment", "");
 
             var transaction = new Transaction("1501260126CR18790,00NTRFPON0000002534162\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
 
 
-            var expectedTransaction2 = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+            var expectedTransaction2 = ExpectedSwiftTransaction.CreateExpected(new DateOnly(2015, 1, 26), DebitCredit.Credit,
                 "R", "EUR", 18790.00M, "NTRF", "PON00000025", null, "Inward Payment", "");
 
             var transaction2 = new Transaction("1501260126CR18790,00NTRFPON00000025\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
 
-            var expectedTransaction3 = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+            var expectedTransaction3 = ExpectedSwiftTransaction.CreateExpected(new DateOnly(2015, 1, 26), DebitCredit.Credit,
                 "R", "EUR", 18790.00M, "NTRF", "PON00000025", null, "Inward Payment", "TEST123");
 
             var transaction3 = new Transaction("1501260126CR18790,00NTRFPON00000025//TEST123\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
@@ -87,7 +87,7 @@ namespace Raptorious.SharpMt940Lib.Tests
         [Test]
         public void WithSupplementaryDetailsAndServiceReference_IsParsedCorrectly()
         {
-            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateOnly(2015, 1, 26), DebitCredit.Credit,
                 "R", "EUR", 18790.00M, "NTRF", "PON0000002534162", null, "Inward Payment", "GBG260150R2ETGXS");
 
             var transaction = new Transaction("1501260126CR18790,00NTRFPON0000002534162//GBG260150R2ETGXS\r\nInward Payment", new Currency("EUR"), Mt940Test.NlCultureInfo);
@@ -98,7 +98,7 @@ namespace Raptorious.SharpMt940Lib.Tests
         [Test]
         public void WithoutSupplementaryDetailsOrServiceReference_IsParsedCorrectly()
         {
-            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateTime(2015, 1, 26), DebitCredit.Credit,
+            var expectedTransaction = ExpectedSwiftTransaction.CreateExpected(new DateOnly(2015, 1, 26), DebitCredit.Credit,
                 "R", "EUR", 18790.00M, "NTRF", "PON0000002534162", null, "", "");
 
             var transaction = new Transaction("1501260126CR18790,00NTRFPON0000002534162", new Currency("EUR"), Mt940Test.NlCultureInfo);

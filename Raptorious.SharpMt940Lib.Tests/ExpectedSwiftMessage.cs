@@ -1,7 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 
 namespace Raptorious.SharpMt940Lib.Tests
 {
@@ -12,15 +12,15 @@ namespace Raptorious.SharpMt940Lib.Tests
         public string TransactionReference { get; set; }
         public string OpeningBalanceCurrencyCode { get; set; }
         public DebitCredit OpeningBalanceDebitCredit { get; set; }
-        public DateTime OpeningBalanceDate { get; set; }
+        public DateOnly OpeningBalanceDate { get; set; }
         public int StatementNumber { get; set; }
         public int SequenceNumber { get; set; }
         public string ClosingBalanceCurrencyCode { get; set; }
         public DebitCredit ClosingBalanceDebitCredit { get; set; }
-        public DateTime ClosingBalanceDate { get; set; }
+        public DateOnly ClosingBalanceDate { get; set; }
         public string ClosingAvailableBalanceCurrencyCode { get; set; }
         public DebitCredit ClosingAvailableBalanceDebitCredit { get; set; }
-        public DateTime ClosingAvailableBalanceDate { get; set; }
+        public DateOnly ClosingAvailableBalanceDate { get; set; }
         public decimal ClosingBalance { get; set; }
         public decimal ClosingAvailableBalance { get; set; }
         public string Description { get; set; }

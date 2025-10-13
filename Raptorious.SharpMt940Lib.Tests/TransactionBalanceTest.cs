@@ -3,8 +3,8 @@
 * This code is distributed under the MIT (for details please see license.txt)
 */
 
-using System;
 using NUnit.Framework;
+using System;
 using System.Data;
 using System.Globalization;
 
@@ -36,7 +36,7 @@ namespace Raptorious.SharpMt940Lib.Mt940Format
 
             Assert.AreEqual(new Money("100", currency, _fr), balance.Balance);
             Assert.AreEqual(new Money("100", currency, _fr).Value, balance.Balance.Value);
-            Assert.AreEqual(new DateTime(2011, 06, 20), balance.EntryDate);
+            Assert.AreEqual(new DateOnly(2011, 06, 20), balance.EntryDate);
             Assert.AreEqual(currency, balance.Currency);
             Assert.AreEqual(DebitCredit.Credit, balance.DebitCredit);
         }

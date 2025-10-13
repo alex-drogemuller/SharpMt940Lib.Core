@@ -31,12 +31,12 @@ namespace Raptorious.SharpMt940Lib
         /// <summary>
         /// ??
         /// </summary>
-        public DateTime ValueDate { get; private set; }
+        public DateOnly ValueDate { get; private set; }
 
         /// <summary>
         /// Optional date.
         /// </summary>
-        public DateTime? EntryDate { get; private set; }
+        public DateOnly? EntryDate { get; private set; }
 
         /// <summary>
         /// ??
@@ -168,7 +168,7 @@ namespace Raptorious.SharpMt940Lib
             return debitCredit;
         }
 
-        static DateTime ExtractValueDate(Match match, CultureInfo cultureInfo)
+        static DateOnly ExtractValueDate(Match match, CultureInfo cultureInfo)
         {
             if (match == null)
             {
@@ -183,7 +183,7 @@ namespace Raptorious.SharpMt940Lib
             return DateParser.ParseDate(match.Groups["year"].Value, match.Groups["month"].Value, match.Groups["day"].Value, cultureInfo);
         }
 
-        static DateTime? ExtractEntryDate(Match match, CultureInfo cultureInfo)
+        static DateOnly? ExtractEntryDate(Match match, CultureInfo cultureInfo)
         {
             if (match == null)
             {

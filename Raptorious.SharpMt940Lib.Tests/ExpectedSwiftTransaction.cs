@@ -1,12 +1,12 @@
-using System;
 using NUnit.Framework;
+using System;
 
 namespace Raptorious.SharpMt940Lib.Tests
 {
     public class ExpectedSwiftTransaction
     {
         public string Description { get; set; }
-        public DateTime ValueDate { get; set; }
+        public DateOnly ValueDate { get; set; }
         public string FundsCode { get; set; }
         public decimal Amount { get; set; }
         public string TransactionType { get; set; }
@@ -31,7 +31,7 @@ namespace Raptorious.SharpMt940Lib.Tests
                 "AccountServicingReference matches.");
         }
 
-        public static ExpectedSwiftTransaction CreateExpected(DateTime valueDate, DebitCredit debitCredit, string fundsCode,
+        public static ExpectedSwiftTransaction CreateExpected(DateOnly valueDate, DebitCredit debitCredit, string fundsCode,
             string currencyCode, decimal amount, string transactionType, string reference, string description, string supplementaryDetails,
             string servicingReference = "")
         {

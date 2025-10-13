@@ -16,7 +16,7 @@ namespace Raptorious.SharpMt940Lib
         /// <param name="day"></param>
         /// <param name="cultureInfo">The culture to use</param>
         /// <returns></returns>
-        public static DateTime ParseDate(string year, string month, string day, CultureInfo cultureInfo)
+        public static DateOnly ParseDate(string year, string month, string day, CultureInfo cultureInfo)
         {
             if (string.IsNullOrWhiteSpace(year))
             {
@@ -42,7 +42,7 @@ namespace Raptorious.SharpMt940Lib
             var parsedMonth = ValueConverter.ParseInteger(month, cultureInfo);
             var parsedDay = ValueConverter.ParseInteger(day, cultureInfo);
 
-            return new DateTime(parsedFourDigitYear, parsedMonth, parsedDay);
+            return new DateOnly(parsedFourDigitYear, parsedMonth, parsedDay);
         }
     }
 }

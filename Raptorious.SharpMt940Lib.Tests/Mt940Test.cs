@@ -3,16 +3,16 @@
 * This code is distributed under the MIT (for details please see license.txt)
 */
 
-using System;
-using System.Linq;
 using NUnit.Framework;
+using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Raptorious.SharpMt940Lib.Mt940Format
 {
-	[TestFixture]
-	public class Mt940Test
-	{
+    [TestFixture]
+    public class Mt940Test
+    {
         const string x = @":20:STARTUMSE
 :25:76351040/0008179863
 :28C:00000/001
@@ -48,38 +48,38 @@ You?30BYLADEMMXXX?31DE90700500000002055382?32Siemens AG CF TRE
             var result = Mt940Parser.ParseData(new AbnAmro(), data, NlCultureInfo);
         }
 
-		[Test]
-		public void FullParsersTest ()
-		{
+        [Test]
+        public void FullParsersTest()
+        {
             var fr = CultureInfo.GetCultureInfo("fr-FR");
 
-			var data = Data;
+            var data = Data;
             var result = Mt940Parser.ParseData(new AbnAmro(), data, NlCultureInfo);
 
-			Assert.AreEqual (4, result.Count);
+            Assert.AreEqual(4, result.Count);
 
-			var message = result.First ();
-			Assert.AreEqual ("500950253", message.Account);
-			Assert.AreEqual (2, message.Transactions.Count);
+            var message = result.First();
+            Assert.AreEqual("500950253", message.Account);
+            Assert.AreEqual(2, message.Transactions.Count);
 
-			var messageFirst = message.Transactions.First ();
+            var messageFirst = message.Transactions.First();
 
-			Assert.AreEqual (DebitCredit.Debit, messageFirst.DebitCredit);
+            Assert.AreEqual(DebitCredit.Debit, messageFirst.DebitCredit);
 
-			Assert.AreEqual (@"GIRO   428428 KPN BV             BETALINGSKENM.  000000018503995
+            Assert.AreEqual(@"GIRO   428428 KPN BV             BETALINGSKENM.  000000018503995
 5109227317                       BETREFT TestUUR D.D. 20-06-2009
 INCL. 1,20 BTW", messageFirst.Description);
 
-			Assert.AreEqual (new DateTime (2009, 06, 23), messageFirst.ValueDate);
-			Assert.AreEqual (new DateTime (2009, 06, 24), messageFirst.EntryDate);
-			Assert.AreEqual (DebitCredit.Debit, messageFirst.DebitCredit);
-			Assert.AreEqual (new Money ("7,5", new Currency ("EUR"), fr), messageFirst.Amount);
-			Assert.AreEqual ("NONREF", messageFirst.Reference);
-			Assert.AreEqual ("N192", messageFirst.TransactionType);
+            Assert.AreEqual(new DateOnly(2009, 06, 23), messageFirst.ValueDate);
+            Assert.AreEqual(new DateOnly(2009, 06, 24), messageFirst.EntryDate);
+            Assert.AreEqual(DebitCredit.Debit, messageFirst.DebitCredit);
+            Assert.AreEqual(new Money("7,5", new Currency("EUR"), fr), messageFirst.Amount);
+            Assert.AreEqual("NONREF", messageFirst.Reference);
+            Assert.AreEqual("N192", messageFirst.TransactionType);
 
-		}
-		// data from: http://wiki.yuki.nl/Default.aspx?Page=ABNAMRO%20MT940%20voorbeeld&NS=&AspxAutoDetectCookieSupport=1
-		private const string Data = @"ABNANL2A
+        }
+        // data from: http://wiki.yuki.nl/Default.aspx?Page=ABNAMRO%20MT940%20voorbeeld&NS=&AspxAutoDetectCookieSupport=1
+        private const string Data = @"ABNANL2A
 940
 ABNANL2A
 :20:ABN AMRO BANK NV
@@ -130,6 +130,6 @@ ABNANL2A
 :86:VERKOOP BECAM HOLDING PER        23/06 ST 1.439 @ 17.52246
 :62F:C090624EUR321033,76
 -";
-	}
+    }
 }
 

@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net40;net45;net461;net9.0</TargetFrameworks>
+    <TargetFrameworks>net9.0</TargetFrameworks>
     <LangVersion>7.3</LangVersion>
     <AssemblyName>Aurum.Mt940.Core</AssemblyName>
     <PackageId>Aurum.Mt940.Core</PackageId>
     <Title>Aurum.Mt940.Core</Title>
     <Product>Aurum.Mt940.Core</Product>
-    <Version>1.0.4</Version>
-    <PackageVersion>1.0.4</PackageVersion>
-    <AssemblyVersion>1.0.4</AssemblyVersion>
+    <Version>1.0.5</Version>
+    <PackageVersion>1.0.5</PackageVersion>
+    <AssemblyVersion>1.0.5</AssemblyVersion>
     <Authors>Mohammad Javad Ebrahimi; Alex Drogemuller</Authors>
     <Company>Aurum Solutions</Company>
     <Copyright>Copyright © Mohammad Javad Ebrahimi 2019, Alex Drogemuller 2025</Copyright>

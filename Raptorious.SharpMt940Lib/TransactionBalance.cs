@@ -23,7 +23,7 @@ namespace Raptorious.SharpMt940Lib
         /// <summary>
         /// 
         /// </summary>
-        public DateTime EntryDate { get; private set; }
+        public DateOnly EntryDate { get; private set; }
 
         /// <summary>
         /// 
@@ -45,9 +45,9 @@ namespace Raptorious.SharpMt940Lib
             if (string.IsNullOrWhiteSpace(data))
             {
                 throw new ArgumentException("data can not be empty", data);
-            }            
+            }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -59,12 +59,12 @@ namespace Raptorious.SharpMt940Lib
             {
                 throw new ArgumentException("data can not be empty", data);
             }
-            
-            if(cultureInfo == null)
+
+            if (cultureInfo == null)
             {
                 throw new ArgumentNullException(nameof(cultureInfo));
             }
-            
+
             var regex = new Regex(@"([C|D]{1})([0-9]{2})([0-9]{2})([0-9]{2})([A-Z]{3})(\d.*)");
             var match = regex.Match(data);
 
@@ -79,7 +79,7 @@ namespace Raptorious.SharpMt940Lib
             Balance = new Money(match.Groups[6].Value, Currency, cultureInfo);
         }
 
-        private static DateTime ParseDate(Match match, CultureInfo cultureInfo)
+        private static DateOnly ParseDate(Match match, CultureInfo cultureInfo)
         {
             return DateParser.ParseDate
                 (
